@@ -31,3 +31,5 @@ function Get-ExeArchitecture {
         | Get-PECoffHeader
     }
 }
+
+Export-ModuleMember -Cmdlet Get-ExeArchitecture
