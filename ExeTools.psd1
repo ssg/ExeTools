@@ -9,10 +9,7 @@
 @{
     RootModule             = "ExeTools.psm1"
     # Version number of this module.
-    ModuleVersion          = '0.1.0'
-
-    # Supported PSEditions
-    # CompatiblePSEditions = @()
+    ModuleVersion          = '0.1.1'
 
     # ID used to uniquely identify this module
     GUID                   = '9dfbbd88-a2eb-43f9-850d-9af0d6f273fa'
@@ -21,7 +18,7 @@
     Author                 = 'Sedat Kapanoglu'
 
     # Copyright statement for this module
-    Copyright              = '(c) Sedat Kapanoglu. All rights reserved.'
+    Copyright              = '(c) 2022 Sedat Kapanoglu. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description            = 'Provides the cmdlet Get-ExeArchitecture'
@@ -33,7 +30,7 @@
     DotNetFrameworkVersion = '5.0'
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport      = @()
+    FunctionsToExport      = "Get-ExeArchitecture"
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport        = "Get-ExeArchitecture"
