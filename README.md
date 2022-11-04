@@ -17,7 +17,7 @@ This cmdlet returns the target architecture value of an executable. It can also 
 .NET's native System.Reflection.PortableExecutable namespace so it probably doesn't recognize ARM64EC (x64 binaries that can be
 natively re-compiled into ARM64). 
 
-I haven't tried it on Linux either
+Since it's PortableExecutable specific at the moment, this cmdlet doesn't work on Linux.
 
 # Contributing
 Feel free to send PRs to add more functionality, add testing, or fix bugs related to executable related operations.
