@@ -32,4 +32,4 @@ function Get-ExeArchitecture {
     }
 }
 
-Export-ModuleMember -Cmdlet Get-ExeArchitecture
+Export-ModuleMember -Function Get-ExeArchitecture
