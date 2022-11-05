@@ -1,5 +1,9 @@
 # Changes
 
+## 0.2.1
+
+- Fix missing in `Get-ExeArchitecture`.
+
 ## 0.2.0
 
 - Add `Get-ExeHeader` function that returns the full PE header.

@@ -36,7 +36,7 @@ function Get-ExeArchitecture {
     process {
         Get-ChildItem -ErrorAction SilentlyContinue $Path 
         | Get-ExeHeader
-        | Select-Object @{n = "Architecture"; e = { $_.Header.Machine } }, Path
+        | Select-Object @{n = "Architecture"; e = { $_.Machine } }, Path
     }
 }
 
