@@ -1,20 +1,27 @@
 #requires -Version 7.0
 
-function Get-PECoffHeader() {
+function Get-ExeHeader() {
     [CmdletBinding()]
     param (
-        [Parameter(ValueFromPipeline = $true, Mandatory = $true)]
-        [System.IO.FileInfo]$Path
+        [Parameter(ValueFromPipeline = $true)]
+        [System.IO.FileInfo]$Path = "*.exe"
     )    
     process {
-        $Path = New-Object System.IO.FileInfo $_
-        $stream = $Path.OpenRead()
-        $reader = New-Object System.Reflection.PortableExecutable.PEHeaders $stream
-        $header = $reader.CoffHeader
-        $stream.Dispose()
-        [PSCustomObject] @{
-            Architecture = $header.Machine
-            Path         = $Path.Name
+        Get-ChildItem -ErrorAction SilentlyContinue $Path | ForEach-Object {
+            $stream = $_.OpenRead()
+            $reader = New-Object System.Reflection.PortableExecutable.PEHeaders $stream
+            $header = $reader.CoffHeader
+            $stream.Dispose()
+            [PSCustomObject]@{
+                Path                 = $_.FullName
+                Machine              = $header.Machine
+                NumberOfSections     = $header.NumberOfSections
+                NumberOfSymbols      = $header.NumberOfSymbols
+                TimeDateStamp        = $header.TimeDateStamp
+                PointerToSymbolTable = $header.PointerToSymbolTable
+                SizeOfOptionalHeader = $header.SizeOfOptionalHeader
+                Characteristics      = $header.Characteristics
+            }
         }
     }
 }
@@ -27,9 +34,10 @@ function Get-ExeArchitecture {
     )
 
     process {
-        Get-ChildItem -ErrorAction SilentlyContinue -Recurse $Path 
-        | Get-PECoffHeader
+        Get-ChildItem -ErrorAction SilentlyContinue $Path 
+        | Get-ExeHeader
+        | Select-Object @{n = "Architecture"; e = { $_.Header.Machine } }, Path
     }
 }
 
-Export-ModuleMember -Function Get-ExeArchitecture
+Export-ModuleMember -Function Get-ExeArchitecture, Get-ExeHeader
