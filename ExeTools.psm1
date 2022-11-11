@@ -9,12 +9,17 @@ function Get-PECoffHeader() {
     process {
         $Path = New-Object System.IO.FileInfo $_
         $stream = $Path.OpenRead()
-        $reader = New-Object System.Reflection.PortableExecutable.PEHeaders $stream
-        $header = $reader.CoffHeader
-        $stream.Dispose()
-        [PSCustomObject] @{
-            Architecture = $header.Machine
-            Path         = $Path.Name
+        try {
+            $reader = New-Object System.Reflection.PortableExecutable.PEHeaders $stream
+            $header = $reader.CoffHeader
+            $stream.Dispose()
+            [PSCustomObject] @{
+                Architecture = $header.Machine
+                Path         = $Path
+            }
+        }
+        catch {
+            Write-Warning "$Path is not a valid portable executable"
         }
     }
 }
