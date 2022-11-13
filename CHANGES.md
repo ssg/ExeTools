@@ -1,5 +1,9 @@
 # Changes
 
+## 0.2.3
+
+- Use a better way to populate result objects.
+
 ## 0.2.2
 
 - Fix missing architecture field in `Get-ExeArchitecture`.

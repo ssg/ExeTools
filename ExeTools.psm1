@@ -12,16 +12,12 @@ function Get-ExeHeader() {
             $reader = New-Object System.Reflection.PortableExecutable.PEHeaders $stream
             $header = $reader.CoffHeader
             $stream.Dispose()
-            [PSCustomObject]@{
-                Path                 = $_.FullName
-                Machine              = $header.Machine
-                NumberOfSections     = $header.NumberOfSections
-                NumberOfSymbols      = $header.NumberOfSymbols
-                TimeDateStamp        = $header.TimeDateStamp
-                PointerToSymbolTable = $header.PointerToSymbolTable
-                SizeOfOptionalHeader = $header.SizeOfOptionalHeader
-                Characteristics      = $header.Characteristics
-            }
+            $obj = [PSCustomObject]$header 
+            Add-Member  -MemberType NoteProperty `
+                -InputObject $obj `
+                -Name Path `
+                -Value $_
+            $obj
         }
     }
 }

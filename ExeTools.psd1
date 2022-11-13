@@ -9,7 +9,7 @@
 @{
     RootModule             = "ExeTools.psm1"
     # Version number of this module.
-    ModuleVersion          = '0.2.2'
+    ModuleVersion          = '0.2.3'
 
     # ID used to uniquely identify this module
     GUID                   = '9dfbbd88-a2eb-43f9-850d-9af0d6f273fa'
