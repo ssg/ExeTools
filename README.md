@@ -44,15 +44,19 @@ Architecture Path
         I386 C:\temp\gzip.exe
 ```
 
-You can also pipe output of other commands to this function like:
+# Examples
+
+Recurse subdirectories:
 
 `dir *.exe -r | Get-ExeArchitecture`
 
-The command above would recursively list all binaries along with their architecture.
-
-Find out all ARM64 binaries on your disk:
+Find all ARM64 binaries on your disk:
 
 `dir *.exe -r | Get-ExeArchitecture | where { $_.Architecture -eq Arm64 }`
+
+Find non-x64 executables currently running on the system:
+
+`(ps).Path | ? { $_ } | Get-ExeArchitecture | ? { $_.Architecture -ne "Amd64" }`
 
 # Contributing
 
