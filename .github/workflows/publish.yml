@@ -12,16 +12,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v1
-      with:
-        pwsh: true
+    # - name: Setup PowerShell
+    #   uses: actions/setup-powershell@v1
+    #   with:
+    #     pwsh: true
         
-    - name: Install required modules
-      shell: pwsh
-      run: |
-        Install-Module -Name PowerShellGet -Force -AllowClobber
-        Install-Module -Name Microsoft.PowerShell.SecretManagement -Force
+    # - name: Install required modules
+    #   shell: pwsh
+    #   run: |
+    #     Install-Module -Name PowerShellGet -Force -AllowClobber
+    #     Install-Module -Name Microsoft.PowerShell.SecretManagement -Force
         
     - name: Test module manifest
       shell: pwsh
