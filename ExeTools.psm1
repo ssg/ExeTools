@@ -35,4 +35,32 @@ function Get-ExeArchitecture {
     }
 }
 
-Export-ModuleMember -Function Get-ExeArchitecture, Get-ExeHeader
+function Get-AssemblyInfo {
+    [CmdletBinding()]
+    param (
+        [Parameter(ValueFromPipeline = $true)]
+        [System.IO.FileInfo]$Path = "*.dll"
+    )
+
+    process {
+        Get-ChildItem -ErrorAction SilentlyContinue $Path | ForEach-Object {
+            try {
+                $assembly = [System.Reflection.Assembly]::LoadFile($_.FullName)            
+                $obj = [PSCustomObject]@{
+                    Name = $assembly.GetName().Name
+                    FileVersion = $_.VersionInfo.FileVersion
+                    AssemblyVersion = $assembly.GetName().Version.ToString()
+                    PublicKeyToken = ($assembly.GetName().GetPublicKeyToken() | ForEach-Object ToString x2) -join ''
+                    Culture = $assembly.GetName().CultureInfo.Name
+                    Path = $_.FullName
+                }
+                $obj
+            }
+            catch {
+                Write-Error "Failed to load assembly from $($_.FullName): $_"
+            }
+        }
+    }
+}
+
+Export-ModuleMember -Function Get-ExeArchitecture, Get-ExeHeader, Get-AssemblyInfo

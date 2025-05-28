@@ -7,7 +7,23 @@ new Windows Dev Kit 2023 machine to see which are actually . To install it:
 Install-Module ExeTools
 ```
 
-# Get-ExeArchitecture
+## Get-ExeHeader
+
+This function returns the raw PE headers for a given executable file. Its output
+is for an executable resembles this:
+
+```
+Path                 : C:\Users\dummy\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll
+Machine              : I386
+NumberOfSections     : 3
+TimeDateStamp        : -554882608
+PointerToSymbolTable : 0
+NumberOfSymbols      : 0
+SizeOfOptionalHeader : 224
+Characteristics      : ExecutableImage, LargeAddressAware, Dll
+```
+
+## Get-ExeArchitecture
 
 This function returns the target architecture of an executable binary file.
 It uses .NET's native System.Reflection.PortableExecutable namespace so it probably doesn't recognize ARM64EC (x64 binaries that can be natively re-compiled into ARM64).

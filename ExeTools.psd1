@@ -9,7 +9,7 @@
 @{
     RootModule             = "ExeTools.psm1"
     # Version number of this module.
-    ModuleVersion          = '0.2.3'
+    ModuleVersion          = '0.3.0'
 
     # ID used to uniquely identify this module
     GUID                   = '9dfbbd88-a2eb-43f9-850d-9af0d6f273fa'
@@ -18,10 +18,10 @@
     Author                 = 'Sedat Kapanoglu'
 
     # Copyright statement for this module
-    Copyright              = '(c) 2022 Sedat Kapanoglu. All rights reserved.'
+    Copyright              = '(c) 2025 Sedat Kapanoglu. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description            = 'Provides the cmdlet Get-ExeArchitecture'
+    Description            = 'Provides several cmdlets to inspect executable files and assemblies, including their headers and architecture.'
 
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion      = '7.0'
