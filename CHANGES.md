@@ -1,5 +1,9 @@
 # Changes
 
+## 0.3.0
+
+- Add `Get-AssemblyInfo`
+
 ## 0.2.3
 
 - Use a better way to populate result objects.

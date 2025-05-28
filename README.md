@@ -7,25 +7,26 @@ new Windows Dev Kit 2023 machine to see which are actually . To install it:
 Install-Module ExeTools
 ```
 
-## Get-ExeHeader
+# cmdlets
 
-This function returns the raw PE headers for a given executable file. Its output
-is for an executable resembles this:
+## Get-AssemblyInfo
+
+This cmdlet returns the assembly version information for a .NET assembly. 
+
+The output looks like this:
 
 ```
-Path                 : C:\Users\dummy\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll
-Machine              : I386
-NumberOfSections     : 3
-TimeDateStamp        : -554882608
-PointerToSymbolTable : 0
-NumberOfSymbols      : 0
-SizeOfOptionalHeader : 224
-Characteristics      : ExecutableImage, LargeAddressAware, Dll
+Name            : Microsoft.Bcl.AsyncInterfaces
+FileVersion     : 9.0.525.21509
+AssemblyVersion : 9.0.0.5
+PublicKeyToken  : cc7b13ffcd2ddd51
+Culture         :
+Path            : C:\Users\dummy\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll
 ```
 
 ## Get-ExeArchitecture
 
-This function returns the target architecture of an executable binary file.
+This cmdlet returns the target architecture of an executable binary file.
 It uses .NET's native System.Reflection.PortableExecutable namespace so it probably doesn't recognize ARM64EC (x64 binaries that can be natively re-compiled into ARM64).
 
 Since it's PortableExecutable specific at the moment, this function fails on ELF
@@ -60,7 +61,23 @@ Architecture Path
         I386 C:\temp\gzip.exe
 ```
 
-# Examples
+## Get-ExeHeader
+
+This function returns the raw COFF header for a given executable file. Its output
+is for an executable resembles this:
+
+```
+Path                 : C:\Users\dummy\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll
+Machine              : I386
+NumberOfSections     : 3
+TimeDateStamp        : -554882608
+PointerToSymbolTable : 0
+NumberOfSymbols      : 0
+SizeOfOptionalHeader : 224
+Characteristics      : ExecutableImage, LargeAddressAware, Dll
+```
+
+# examples
 
 Recurse subdirectories:
 
@@ -74,10 +91,10 @@ Find non-x64 executables currently running on the system:
 
 `(ps).Path | ? { $_ } | Get-ExeArchitecture | ? { $_.Architecture -ne "Amd64" }`
 
-# Contributing
+# contributing
 
 Feel free to send PRs to add more functionality, add testing, or fix bugs related to executable related operations.
 
-# License
+# license
 
 Apache License 2.0. See the LICENSE file for details.
