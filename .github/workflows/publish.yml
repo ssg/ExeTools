@@ -1,0 +1,36 @@
+name: Publish to PowerShell Gallery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup PowerShell
+      uses: actions/setup-powershell@v1
+      with:
+        pwsh: true
+        
+    - name: Install required modules
+      shell: pwsh
+      run: |
+        Install-Module -Name PowerShellGet -Force -AllowClobber
+        Install-Module -Name Microsoft.PowerShell.SecretManagement -Force
+        
+    - name: Test module manifest
+      shell: pwsh
+      run: |
+        Test-ModuleManifest -Path "ExeTools.psd1"
+        
+    - name: Publish to PowerShell Gallery
+      shell: pwsh
+      env:
+        PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
+      run: |
+        Publish-Module -Path . -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
