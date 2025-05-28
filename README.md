@@ -1,7 +1,10 @@
 # about
 
-ExeTools is currently a PowerShell module that only provides the `Get-ExeArchitecture` cmdlet. I needed it on my
-new Windows Dev Kit 2023 machine to see which are actually . To install it:
+ExeTools is a PowerShell module that provides few cmdlets for analyzing executable files (EXE and DLL).
+I wrote it because needed it on my new Windows Dev Kit 2023 machine to find non-ARM64 binaries. Now, I'm
+slowly adding more functionality to it like `Get-AssemblyInfo` to analyze .NET assemblies. 
+
+To install it:
 
 ```
 Install-Module ExeTools
