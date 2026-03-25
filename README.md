@@ -6,7 +6,7 @@ slowly adding more functionality to it like `Get-AssemblyInfo` to analyze .NET a
 
 To install it:
 
-```
+```pwsh
 Install-Module ExeTools
 ```
 
@@ -37,7 +37,7 @@ binaries on Unix.
 
 Example:
 
-```
+```pwsh
 Get-ExeArchitecture *.exe
 ```
 
@@ -84,15 +84,21 @@ Characteristics      : ExecutableImage, LargeAddressAware, Dll
 
 Recurse subdirectories:
 
-`dir *.exe -r | Get-ExeArchitecture`
+```pwsh
+dir *.exe -r | Get-ExeArchitecture
+```
 
 Find all ARM64 binaries on your disk:
 
-`dir *.exe -r | Get-ExeArchitecture | where { $_.Architecture -eq Arm64 }`
+```pwsh
+dir *.exe -r | Get-ExeArchitecture | where { $_.Architecture -eq Arm64 }
+```
 
 Find non-x64 executables currently running on the system:
 
-`(ps).Path | ? { $_ } | Get-ExeArchitecture | ? { $_.Architecture -ne "Amd64" }`
+```pwsh
+(ps).Path | ? { $_ } | Get-ExeArchitecture | ? { $_.Architecture -ne "Amd64" }
+```
 
 # contributing
 
