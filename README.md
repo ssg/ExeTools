@@ -66,7 +66,7 @@ Architecture Path
 
 ## Get-ExeHeader
 
-This function returns the raw COFF header for a given executable file. Its output
+This function returns the raw [COFF](https://en.wikipedia.org/wiki/COFF) header for a given executable file. Its output
 is for an executable resembles this:
 
 ```
